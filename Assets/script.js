@@ -11,8 +11,9 @@ let searchHistoryCounter = 0;
 // variable to limit number of days pulled
 const numberOfDays = 5;
 
-//URL base
+//URL base 5-Day
 let queryBaseURL = "http://api.openweathermap.org/data/2.5/forecast?" + apiKey;
+
 
 // FUNCTIONS
 // =======================================
@@ -34,6 +35,27 @@ function runQuery(numArticles, queryURL) {
         console.log("Temp:", weatherData.list[0].main.temp + " F");
         console.log("Humidity:", weatherData.list[0].main.humidity + " %");
         console.log("Wind Speed:", weatherData.list[0].wind.speed + "MPH");
+        //Data for One Call from 5-Day
+        console.log("Latitude", weatherData.city.coord.lat);
+        console.log("Longitude", weatherData.city.coord.lon);
+
+        //     </div>
+        //     <h2 id="cityName date weatherIcon">{City Name} {Date} {Weather Emoji}</h2>
+        //     <p id="temp">Temperature:</p>
+        //     <p id="humidity">Humidity:</p>
+        //     <p id="windSpeed">Wind Speed:</p>
+        //     <p id="uvIndex">UV Index:</p>
+        // </div>
+
+        // create h2, 4 sep p tags 
+
+        //Start Dumping to HTML 
+        let dayPreviewTitle = $('<h2>').text(weatherData.city.name + " " + weatherData.list[0].dt_txt);
+        let dayPreviewTemp = $('<p>');
+        let dayPreviewHumidity = $('<p>');
+        let dayPreviewWindSpeed = $('<p>');
+        let dayPreviewUVIndex = $('<p>');
+        $("#dayPreview").append(dayPreviewTitle);
 
         //Five Day Data -- create appending loop to attach 5-day li ==== weatherData.list.length
         for (let i = 0; i < numberOfDays; i++) {
@@ -41,9 +63,24 @@ function runQuery(numArticles, queryURL) {
             console.log("5-day TEMP", weatherData.list[i].main.temp + " F");
             console.log("5-DAY HUMIDITY:", weatherData.list[i].main.humidity + " %");
         }
-    })
+
+        // longitude and latitude vars 
+        let longitude = "&lon=" + weatherData.city.coord.lon;
+        console.log(longitude);
+        let latitude = "lat=" + weatherData.city.coord.lat;
+        console.log(latitude);
+
+        //URL base One Call
+        let oneCallBaseURL = "https://api.openweathermap.org/data/2.5/onecall?" + latitude + longitude + "&exclude=hourly,minutely&" + apiKey;
+        // needs "imperial units"
+        console.log(oneCallBaseURL);
+
+    });
 
 }
+
+
+
 // MAIN PROCESSES
 // =======================================
 

@@ -4,3 +4,7 @@ api call: http://api.openweathermap.org/data/2.5/forecast?appid=b17276de874363ea
 
 new URL: http://api.openweathermap.org/data/2.5/forecast?b17276de874363ea7a970b48553f2cc4&q=Raleigh
 
+one call api key:
+https://api.openweathermap.org/data/2.5/onecall?lat=35.7721lon=-78.6386&exclude=hourly&appid=b17276de874363ea7a970b48553f2cc4
+
+https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={YOUR API KEY}
