@@ -12,5 +12,4 @@ Launch brower.
 
 Search a city via search bar. 
 
-## Preview
-![Screen Shot 2020-06-25 at 11 04 41 PM](https://user-images.githubusercontent.com/61765683/85816190-95f2f280-b738-11ea-9a44-7390ca7cd603.png)
+
