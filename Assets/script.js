@@ -39,23 +39,18 @@ function runQuery(numArticles, queryURL) {
         console.log("Latitude", weatherData.city.coord.lat);
         console.log("Longitude", weatherData.city.coord.lon);
 
-        //     </div>
-        //     <h2 id="cityName date weatherIcon">{City Name} {Date} {Weather Emoji}</h2>
-        //     <p id="temp">Temperature:</p>
-        //     <p id="humidity">Humidity:</p>
-        //     <p id="windSpeed">Wind Speed:</p>
-        //     <p id="uvIndex">UV Index:</p>
-        // </div>
-
-        // create h2, 4 sep p tags 
-
         //Start Dumping to HTML 
         let dayPreviewTitle = $('<h2>').text(weatherData.city.name + " " + weatherData.list[0].dt_txt);
-        let dayPreviewTemp = $('<p>');
-        let dayPreviewHumidity = $('<p>');
-        let dayPreviewWindSpeed = $('<p>');
-        let dayPreviewUVIndex = $('<p>');
+        let dayPreviewTemp = $('<p>').text("Temperature: " + weatherData.list[0].main.temp + " F");
+        let dayPreviewHumidity = $('<p>').text("Humidity: " + weatherData.list[0].main.humidity + " %");
+        let dayPreviewWindSpeed = $('<p>').text("Wind Speed: " + weatherData.list[0].wind.speed + " MPH");
+
+        //let dayPreviewUVIndex = $('<p>').text();
         $("#dayPreview").append(dayPreviewTitle);
+        $("#dayPreview").append(dayPreviewTemp);
+        $("#dayPreview").append(dayPreviewHumidity);
+        $("#dayPreview").append(dayPreviewWindSpeed);
+
 
         //Five Day Data -- create appending loop to attach 5-day li ==== weatherData.list.length
         for (let i = 0; i < numberOfDays; i++) {
@@ -71,7 +66,7 @@ function runQuery(numArticles, queryURL) {
         console.log(latitude);
 
         //URL base One Call
-        let oneCallBaseURL = "https://api.openweathermap.org/data/2.5/onecall?" + latitude + longitude + "&exclude=hourly,minutely&" + apiKey;
+        let oneCallBaseURL = "https://api.openweathermap.org/data/2.5/onecall?" + latitude + longitude + "&exclude=hourly,minutely&" + "&units=imperial&" + apiKey;
         // needs "imperial units"
         console.log(oneCallBaseURL);
 
